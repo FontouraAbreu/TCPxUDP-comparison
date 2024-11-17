@@ -1,0 +1,38 @@
+services:
+  base: &base
+    build:
+      context: ./docker
+      dockerfile: Dockerfile
+    image: tcpxudp
+    cap_add:
+      - NET_ADMIN
+    volumes:
+      - ./volumes/iperf:/volumes/iperf
+
+  iperf-server:
+    <<: *base
+    # command: iperf3 -s
+
+  200mbps:
+    <<: *base
+    environment:
+      - DOWNLOAD_SPEED=200
+      - UPLOAD_SPEED=200
+
+  500mbps:
+    <<: *base
+    environment:
+      - DOWNLOAD_SPEED=500
+      - UPLOAD_SPEED=500
+
+  700mbps:
+    <<: *base
+    environment:
+      - DOWNLOAD_SPEED=700
+      - UPLOAD_SPEED=700
+
+  1gbps:
+    <<: *base
+    environment:
+      - DOWNLOAD_SPEED=1000
+      - UPLOAD_SPEED=1000
