@@ -12,12 +12,16 @@ Neste trabalho **você vai responder à seguinte pergunta**: na prática, **quan
 
 Como fazer esta medida? Pois cada dupla vai definir :-) A dupla pode fazer transferência de arquivo com TCP e UDP. A dupla pode fazer transferência de dados em memória principal com TCP e UDP. A dupla pode considerar casos em que o UDP vai causar fragmentação, versus casos em que não vai levar. A dupla pode considerar casos em que o UDP tem o checksum desabilitado: isso faz diferença?
 
-Veja: o UDP não detecta a perda de pacotes (que podem ocorrer inclusive em buffer local!) Assim é importante verificar se algo se perdeu. Sugiro fazer esta verificação depois de contar o tempo, para que não atrapalhe. Outra possibilidade é fazer também a verificação no recebimento, para identificar o quanto impacta no desempenho da rede. 
+Veja: o UDP não detecta a perda de pacotes (que podem ocorrer inclusive em buffer local!) Assim é importante verificar se algo se perdeu. Sugiro fazer esta verificação depois de contar o tempo, para que não atrapalhe. Outra possibilidade é fazer também a verificação no recebimento, para identificar o quanto impacta no desempenho da rede.
 
 ## methodology
 
 In order to compare TCP and UDP performance, we will use the following methodology:
 
-1. Measure how well does the NTP protocol perform over TCP and UDP beetwen two hosts
-2. Make bandwidth tests using iperf3 over TCP and UDP in different sized ethernet links and MTU sizes
+1. Make bandwidth tests using iperf3 over TCP and UDP in different sized ethernet links and MTU sizes
+2. Measure how well does the NTP protocol perform over TCP and UDP beetwen two hosts
 3. Measure the difference in performance between TCP, UDP and QUIC using a bandwidth test
+
+## 1. Bandwidth tests using iperf3
+
+We will use 
