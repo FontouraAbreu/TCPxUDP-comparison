@@ -16,5 +16,5 @@ RUN apt update && apt install -y \
 # install iperf3
 RUN apt update && yes | apt install -y iperf3
 
-# ENTRYPOINT [ "sh", "-c", "configure_tc.sh" ]
-CMD [ "tail", "-f", "/dev/null" ]
+# Defina o entrypoint
+ENTRYPOINT ["iperf3"]
