@@ -5,22 +5,39 @@ services:
     image: iperf3-test
     command: iperf3 -s
     ports:
-      - "5201:5201"
+      - "5201:5201/tcp"
+      - "5201:5201/udp"
     networks:
       nettest:
         ipv4_address: 172.30.0.2
 
-  client:
+  # client_tcp:
+  #   image: iperf3-test
+  #   command: iperf3 -c 172.30.0.2 -p 5201 -M 1500 -t 30 && sleep infinity
+  #   networks:
+  #     nettest:
+  #       ipv4_address: 172.30.0.3
+  #   deploy:
+  #     resources:
+  #       limits:
+  #         memory: 512M
+  #         cpus: "1.0"
+  #   depends_on:
+  #     - server
+
+  client_udp:
     image: iperf3-test
-    command: iperf3 -c 172.30.0.2 -p 5201 --no-delay -t 10 && sleep infinity
+    command: iperf3 -c 172.30.0.2 -p 5201 -u -b -t 60 || sleep infinity
     networks:
       nettest:
-        ipv4_address: 172.30.0.3
+        ipv4_address: 172.30.0.4
     deploy:
       resources:
         limits:
           memory: 512M
           cpus: "1.0"
+    depends_on:
+      - server
 
 networks:
   nettest:

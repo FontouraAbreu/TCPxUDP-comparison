@@ -16,5 +16,9 @@ RUN apt update && apt install -y \
 # install iperf3
 RUN apt update && yes | apt install -y iperf3
 
+# Copy a script to the image
+COPY start.sh /start.sh
+RUN chmod +x /start.sh
+
 # Defina o entrypoint
 ENTRYPOINT ["iperf3"]
