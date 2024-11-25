@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TCP versus UDP: A Verdade</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Geist+Mono&display=swap');
+
+        /* Estilo geral */
+        body {
+            font-family: 'Geist Mono', monospace;
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+            background: #1D1F26;
+            color: #e9e7e7;
+        }
+
+        header {
+            background: #39594D;
+            padding: 20px;
+            text-align: center;
+        }
+
+        nav {
+            background: #1e1e1e;
+            padding: 10px;
+            text-align: center;
+        }
+
+        nav a {
+            margin: 0 10px;
+            padding: 5px 10px;
+            text-decoration: none;
+            color: #e0e0e0;
+            font-weight: bold;
+        }
+
+        nav a:hover {
+            color: #b8b3b3;
+            background: #A6330A;
+            border-radius: 5px;
+        }
+
+        section {
+            padding: 20px;
+            margin: 20px 32px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            background: #212620;
+        }
+
+        span {
+            background: #2d2d2d;
+            color: #cfcfcf;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: separate;
+            border-spacing: 0;
+            margin: 20px 0;
+            border-radius: 5px;
+            overflow: hidden;
+        }
+
+        table th,
+        table td {
+            border: 1px solid #ddd;
+            padding: 5px;
+            text-align: center;
+        }
+
+        table th {
+            background: #39594D;
+            color: white;
+        }
+
+        table tr:first-child th:first-child {
+            border-top-left-radius: 5px;
+        }
+
+        table tr:first-child th:last-child {
+            border-top-right-radius: 5px;
+        }
+
+        table tr:last-child td:first-child {
+            border-bottom-left-radius: 5px;
+        }
+
+        table tr:last-child td:last-child {
+            border-bottom-right-radius: 5px;
+        }
+
+        footer {
+            text-align: center;
+            padding: 10px;
+            background: #39594D;
+            color: white;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <h1>Relatório: TCP versus UDP: A Verdade</h1>
+        <h3>Gabriel Simon Batista Ribeiro - GRR20210575 e Vinícius Fontoura de Abreu - GRR2020
+    </header>
+
+    <nav>
+        <a href="#introducao">Introdução</a>
+        <a href="#metodologia">Como Fizemos os Testes</a>
+        <a href="#resultados">Resultados</a>
+        <a href="#analise">A Verdade!</a>
+    </nav>
+
+    <section id="introducao">
+        <h2>Introdução</h2>
+        <p class="text">
+            Ao longo deste semestre, aprofundamos nossos estudos sobre os protocolos de comunicação UDP e TCP,
+            explorando suas características fundamentais, as aplicações
+            mais adequadas para cada um, e os cenários em que eles se destacam ou enfrentam desafios. O TCP é amplamente
+            utilizado em aplicações que exigem alta confiabilidade e integridade dos dados, como transferência de
+            arquivos, navegação web e comunicações de e-mail. Por outro lado, o UDP se destaca em situações que demandam
+            baixa latência e alta velocidade, como transmissões de vídeo ao vivo, jogos online e sistemas de voz sobre
+            IP (VoIP).
+            <br />
+            <br />
+            Além de compreender onde e como esses protocolos são utilizados, analisamos as vantagens e desvantagens
+            inerentes a cada um. O TCP oferece confiabilidade ao estabelecer conexões, retransmitir pacotes perdidos e
+            controlar congestionamento, mas isso pode resultar em maior sobrecarga e menor eficiência em situações de
+            rede instável. Já o UDP, por ser leve e não oferecer controles como retransmissão e verificação de entrega,
+            alcança desempenho superior em termos de velocidade, mas sacrifica a confiabilidade, sendo mais suscetível a
+            perdas de pacotes e fragmentação.
+            <br />
+            <br />
+            Com isso, nosso objetivo foi explorar não apenas as virtudes desses protocolos, mas também
+            identificar suas limitações em condições adversas, como perda de pacotes, atraso na rede e fragmentação.
+            Para isso, estruturamos um conjunto de testes que avaliam o comportamento de cada protocolo em algumas
+            situações
+            [continuar]
+        </p>
+    </section>
+
+    <section id="metodologia">
+        <h2>Como fizemos os Testes</h2>
+        <p>
+            Para realizar os testes de desempenho entre TCP e UDP, utilizamos o <span>Docker</span> como ferramenta
+            principal para a construção e execução dos ambientes de teste.
+        </p>
+    </section>
+
+    <section id="resultados">
+        <h2>Resultados</h2>
+        <p>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam nec purus ac nunc
+            ultricies tincidunt. Nullam nec purus ac nunc
+            ultricies tincidunt. Nullam nec purus ac nunc
+            ultricies tincidunt. Nullam nec purus ac nunc
+        </p>
+        <table>
+            <thead>
+                <tr>
+                    <th>Condição</th>
+                    <th>UDP (ms)</th>
+                    <th>TCP (ms)</th>
+                    <th>Observações</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Rede Estável</td>
+                    <td>15</td>
+                    <td>20</td>
+                    <td>UDP mais rápido devido à ausência de controle de conexão</td>
+                </tr>
+                <tr>
+                    <td>Perda de Pacotes</td>
+                    <td>25</td>
+                    <td>30</td>
+                    <td>TCP compensou perdas com retransmissões</td>
+                </tr>
+                <tr>
+                    <td>Alta Latência</td>
+                    <td>18</td>
+                    <td>22</td>
+                    <td>TCP apresentou estabilidade maior</td>
+                </tr>
+            </tbody>
+        </table>
+    </section>
+
+    <section id="analise">
+        <h2>Análise e Conclusão</h2>
+        <img src="https://media2.giphy.com/media/v1.Y2lkPTc5MGI3NjExbzByMGZ0bnhtamNtMHV1cGJya2EzcWdhcXNxbTh3bm5pbGRwZ2d2dyZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/3o6nV3ykHj2OALKq8E/giphy.webp"
+            alt="Gato">
+        <p>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam nec purus ac nunc
+            ultricies tincidunt. Nullam nec purus ac nunc
+            ultricies tincidunt. Nullam nec purus ac nunc
+            ultricies tincidunt. Nullam nec purus ac nunc
+        </p>
+    </section>
+</body>
+
+</html>
