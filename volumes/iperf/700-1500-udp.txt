@@ -1,0 +1,19 @@
+Connecting to host iperf-server, port 5201
+[  5] local 172.24.0.6 port 42073 connected to 172.24.0.2 port 5201
+[ ID] Interval           Transfer     Bitrate         Total Datagrams
+[  5]   0.00-1.00   sec  81.1 MBytes   680 Mbits/sec  58741  
+[  5]   1.00-2.00   sec  81.0 MBytes   680 Mbits/sec  58674  
+[  5]   2.00-3.00   sec  80.9 MBytes   679 Mbits/sec  58601  
+[  5]   3.00-4.00   sec  81.0 MBytes   680 Mbits/sec  58691  
+[  5]   4.00-5.00   sec  81.0 MBytes   679 Mbits/sec  58643  
+[  5]   5.00-6.00   sec  81.0 MBytes   680 Mbits/sec  58664  
+[  5]   6.00-7.00   sec  80.6 MBytes   677 Mbits/sec  58401  
+[  5]   7.00-8.00   sec  81.0 MBytes   680 Mbits/sec  58681  
+[  5]   8.00-9.00   sec  81.0 MBytes   680 Mbits/sec  58682  
+[  5]   9.00-10.00  sec  80.9 MBytes   678 Mbits/sec  58561  
+- - - - - - - - - - - - - - - - - - - - - - - - -
+[ ID] Interval           Transfer     Bitrate         Jitter    Lost/Total Datagrams
+[  5]   0.00-10.00  sec   810 MBytes   679 Mbits/sec  0.000 ms  0/586339 (0%)  sender
+[  5]   0.00-10.00  sec   810 MBytes   679 Mbits/sec  0.001 ms  0/586339 (0%)  receiver
+
+iperf Done.
