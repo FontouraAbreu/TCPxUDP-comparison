@@ -151,25 +151,47 @@
             perdas de pacotes e fragmentação.
             <br />
             <br />
-            Com isso, nosso objetivo foi explorar não apenas as virtudes desses protocolos, mas também
-            identificar suas limitações em condições adversas, como perda de pacotes, atraso na rede e fragmentação.
-            Para isso, estruturamos um conjunto de testes que avaliam o comportamento de cada protocolo em algumas
-            situações
-            [continuar]
+            Com isso, nosso objetivo foi explorar contextos em que essa máxima não se aplica ou é subvertida. Para isso,
+            trouxemos a seguinte dúvida: <b>em que situações o TCP pode superar o UDP em termos de desempenho?</b>
+            <br />
+            <br />
+            Vamos partir da premissa de que o <b>UDP é mais rápido que o TCP</b>, devido à ausência de controle de conexão e
+            menor sobrecarga. No entanto, a maioria dos rotedores modernos contém otimizações em hardware para o TCP, o
+            que pode resultar em um desempenho superior em certas situações. Para testar essa hipótese, realizamos
+            experimentos em enlaces reais e virtuais, comparando o desempenho do TCP e UDP em diferentes condições de
+            rede.
         </p>
     </section>
 
     <section id="metodologia">
         <h2>Como fizemos os Testes</h2>
         <p class="text">
-            Para realizar os testes de comparação entre TCP e UDP, utilizamos o <span>Docker</span> como ferramenta
+            Realizamos dois tipos de testes, um em enlaces reais do PoP-PR(Com permissão do coordenador técnico do PoP - 
+            Chrystian Lyra) e outro em enlaces virtuais utilizando o <span>Docker</span>. Os testes foram realizados em 
+            enlaces de 200Mbit/s, 500Mbit/s e 1Gbit/s, usando diferentes tamanhos de MTU (1500 e 9000) tanto para o TCP quanto para o UDP.
+            <br />
+            <h3>Testes em Enlaces Reais</h3>
+            Para realizar os testes em enlaces reais, utilizamos o <span>iperf3</span> como ferramenta de medição de desempenho. 
+            O <span>iperf3</span> é uma ferramenta de código aberto que permite medir a largura de banda e a qualidade 
+            de uma conexão de rede. Para os testes, utilizamos um servidor <span>iperf3</span> em uma máquina virtual no 
+            PoP-PR e clientes em máquinas locais na outra ponta do enlace. Foram usados enlaces das seguintes instituições: UTFPR, UFPR e IFPR.
+
+            <h3>Testes em Enlaces Virtuais</h3>
+            Para realizar os testes em enlaces virtuais, utilizamos o <span>Docker</span> como ferramenta de virtualização
             principal para a construção e execução dos ambientes de teste. O <span>Docker</span> nos permitiu criar um
             ambiente
-            isolado e facilmente manipulavel para configurar servidores e clientes <span>iperf3</span>.
-            Como cada contêiner funciona como uma unidade independente, permitindo testar diferentes configurações de
-            rede. Abaixo estão os arquivos de configuração utilizadas no <span>Dockerfile</span>:
-            <a class="files" href="./docker/Dockerfile.txt" target="_blank">Dockerfile</a>
+            isolado e facilmente manipulavel para configurar um servidor e clientes usando o <span>iperf3</span>.
             <br />
+            Os enlaces virtuais foram configurados usando o <span>tc</span> (traffic control) do Linux, que permite simular 
+            diferentes condições de rede, como latência, perda de pacotes e largura de banda.
+            <br />
+            <br />
+            Abaixo estão os arquivos de configuração utilizados para a construção dos containêres 
+            <ul>
+                <li><a class="files" href="./docker/Dockerfile.txt" target="_blank">Dockerfile</a></li>
+                <li><a class="files" href="./docker-compose.yml.txt" target="_blank">docker-compose.yml</a></li>
+                <li><a class="files" href="./docker/entrypoint.sh.txt" target="_blank">entrypoint.sh</a></li>
+            </ul>
             <br />
             Os testes foram configurados e divididos para diferentes tamanhos de banda e MTU. Os tamanhos testados
             foram, 200Mbit/s, 500Mbit/s e 1Gbit/s. Para cada tamanho de banda, foram testados os seguintes MTUs: 1500 e
