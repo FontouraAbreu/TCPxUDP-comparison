@@ -19,8 +19,6 @@ services:
       - NETWORK_SPEED=200
     depends_on:
       - iperf-server        
-    # command: iperf3 -c iperf-server -w 256K -M 9000 -t 30 --logfile /volumes/iperf/200-tcp.txt && \
-    #           iperf3 -c iperf-server -w 256K -M 9000 -t 30 -u --logfile /volumes/iperf/200-udp.txt
 
   500mbps:
     <<: *base
@@ -28,8 +26,6 @@ services:
       - NETWORK_SPEED=500
     depends_on:
       - iperf-server
-    # command: iperf3 -c iperf-server -w 256K -M 9000 -t 30 --logfile /volumes/iperf/500-tcp.txt && \
-    #           iperf3 -c iperf-server -w 256K -M 9000 -t 30 -u --logfile /volumes/iperf/500-udp.txt
 
   700mbps:
     <<: *base
@@ -37,8 +33,6 @@ services:
       - NETWORK_SPEED=700
     depends_on:
       - iperf-server
-    # command: iperf3 -c iperf-server -w 256K -M 9000 -t 30 --logfile /volumes/iperf/700-tcp.txt && \
-    #           iperf3 -c iperf-server -w 256K -M 9000 -t 30 -u --logfile /volumes/iperf/700-udp.txt
 
   1gbps:
     <<: *base
@@ -46,5 +40,3 @@ services:
       - NETWORK_SPEED=1000
     depends_on:
       - iperf-server
-    # command: iperf3 -c iperf-server -w 256K -M 9000 -t 30 --logfile /volumes/iperf/1000-tcp.txt && \
-    #           iperf3 -c iperf-server -w 256K -M 9000 -t 30 -u --logfile /volumes/iperf/1000-udp.txt
