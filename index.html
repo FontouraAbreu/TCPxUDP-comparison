@@ -57,6 +57,17 @@
             color: #cfcfcf;
         }
 
+        .text {
+            text-align: justify;
+        }
+
+        .files {
+            background: #2d2d2d;
+            color: #cfcfcf;
+            padding: 5px;
+            border-radius: 5px;
+        }
+
         table {
             width: 100%;
             border-collapse: separate;
@@ -150,9 +161,19 @@
 
     <section id="metodologia">
         <h2>Como fizemos os Testes</h2>
-        <p>
-            Para realizar os testes de desempenho entre TCP e UDP, utilizamos o <span>Docker</span> como ferramenta
-            principal para a construção e execução dos ambientes de teste.
+        <p class="text">
+            Para realizar os testes de comparação entre TCP e UDP, utilizamos o <span>Docker</span> como ferramenta
+            principal para a construção e execução dos ambientes de teste. O <span>Docker</span> nos permitiu criar um
+            ambiente
+            isolado e facilmente manipulavel para configurar servidores e clientes <span>iperf3</span>.
+            Como cada contêiner funciona como uma unidade independente, permitindo testar diferentes configurações de
+            rede. Abaixo estão os arquivos de configuração utilizadas no <span>Dockerfile</span>:
+            <a class="files" href="./docker/Dockerfile.txt" target="_blank">Dockerfile</a>
+            <br />
+            <br />
+            Os testes foram configurados e divididos para diferentes tamanhos de banda e MTU. Os tamanhos testados
+            foram, 200Mbit/s, 500Mbit/s e 1Gbit/s. Para cada tamanho de banda, foram testados os seguintes MTUs: 1500 e
+            9000. Com
         </p>
     </section>
 
@@ -162,7 +183,7 @@
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam nec purus ac nunc
             ultricies tincidunt. Nullam nec purus ac nunc
             ultricies tincidunt. Nullam nec purus ac nunc
-            ultricies tincidunt. Nullam nec purus ac nunc
+            ultricies tclass="text"incidunt. Nullam nec purus ac nunc
         </p>
         <table>
             <thead>
