@@ -129,7 +129,7 @@
 
     <header>
         <h1>Relatório: TCPxUDP: A Verdade</h1>
-        <h3>Gabriel Simon Batista Ribeiro - GRR20210575 e Vinícius Fontoura de Abreu - GRR20206873
+        <h3><b>Gabriel Simon Batista Ribeiro - GRR20210575 e Vinícius Fontoura de Abreu - GRR20206873</b></h3>
     </header>
 
     <nav>
@@ -179,13 +179,13 @@
             verificar se as otimizações de hardware para o TCP terão algum efeito prático na banda atingida. Os testes foram realizados em 
             enlaces de 500Mbit/s e 1Gbit/s, usando diferentes tamanhos de MTU (1500 e 9000) tanto para o TCP quanto para o UDP.
             <br />
-            <h3>Testes em Enlaces Reais</h3>
+            <h3><b>Testes em Enlaces Reais</b></h3>
             Para realizar os testes em enlaces reais, utilizamos o <span>iperf3</span> como ferramenta de medição de desempenho. 
             O <span>iperf3</span> é uma ferramenta de código aberto que permite medir a largura de banda e a qualidade 
             de uma conexão de rede. Para os testes, utilizamos um servidor <span>iperf3</span> em uma máquina virtual no 
             PoP-PR e clientes em máquinas locais na outra ponta do enlace. Foram usados enlaces das seguintes instituições: UTFPR, UFPR e IFPR.
 
-            <h3>Testes em Enlaces Virtuais</h3>
+            <h3><b>Testes em Enlaces Virtuais</b></h3>
             Para realizar os testes em enlaces virtuais, utilizamos o <span>Docker</span> como ferramenta de virtualização
             principal para a construção e execução dos ambientes de teste. O <span>Docker</span> nos permitiu criar um
             ambiente
@@ -201,7 +201,7 @@
                 <li><a class="files" href="./docker-compose.yml.txt" target="_blank">docker-compose.yml</a></li>
                 <li><a class="files" href="./entrypoint.sh.txt" target="_blank">entrypoint.sh</a></li>
             </ul>
-            <h3>Executando os testes</h3>
+            <h3><b>Executando os testes</b></h3>
             Para executar os testes, é necessário ter o <span>docker</span> em uma versão recente instalada na máquina.
             <br />
             <br />
@@ -362,7 +362,7 @@
         <img src="./Enlaces 1000 Mbps - 9000 MTU.svg" alt="Gráfico 1000Mbit/s 9000 MTU">
         <br />
         Com os gráficos fica fácil de ver que:
-        <h3>Enlaces reais</h3>
+        <h3><b>Enlaces reais</b></h3>
         Nos enlaces reais, com MTU 1500, o TCP atingiu em média 94.96% da banda nominal enquanto o UDP atingiu 94,43% da banda nominal.
         <br />
         <br />
@@ -371,7 +371,7 @@
         <br />
         Portanto, o TCP teve uma melhora de 2.32% ao aumentar o MTU nos enlaces reais e o UDP teve uma melhora de 5.43% ao aumentar o MTU nos enlaces reais.
         
-        <h3>Enlaces virtuais</h3>
+        <h3><b>Enlaces virtuais</b></h3>
 
         Nos enlaces virtuais, com MTU 1500, o TCP atingiu 94.9% da banda nominal enquanto o UDP atingiu 97.3% da banda nominal.
         <br />
@@ -390,7 +390,35 @@
             Também é possível notar que nos enlaces reais, com MTU 1500, o TCP performou levemente melhor que o UDP.
             <br />
             <br />
-            Logo, surge a questão: <b>Por que o TCP performou tão bem quanto o UDP nos enlaces reais?</b> Além disso, <b>por que o TCP teve uma melhora significativa ao aumentar o MTU nos enlaces reais?</b>
+            Logo, surge a questão: <b>Por que o TCP performou tão bem quanto o UDP nos enlaces reais?</b> Além disso, 
+            <b>por que o TCP teve uma melhora significativa ao aumentar o MTU nos enlaces reais?</b>
+
+            <h3><b>Suposição</b></h3>
+            Acreditamos que a melhora do TCP ao aumentar o MTU nos enlaces reais se deve ao fato de que os 
+            roteadores modernos possuem otimizações em hardware para o TCP, o que pode resultar em um desempenho superior em certas situações.
+            <br />
+            Já em relação à melhora do TCP em enlaces reais ao aumentar o MTU, acreditamos que isso se deve ao fato de que ao 
+            aumentar o MTU, menos pacotes são fragmentados, o que resulta em menos sobrecarga e, junto com as otimizações de hardware, resulta em um desempenho superior.
+
+            <h3><b>Base da Suposição</b></h3>
+            <br />
+            Ao pesquisar sobre o assunto, encontramos fontes que apoiam nossa suposição. Features como <b>Segment Offloading</b>, <b>Caching e compressão de segmentos TCP</b>, <b>Paralelização de transmissão de dados</b>
+
+            Além disso, inumeras otimizações de software nos roteadores modernos, como <b>TCP Fast Open</b>, <b>Politicas de aceleração</b>, <b>Janela TCP dinâmica</b>, <b>TCP Forwarding em firewalls</b>
+
+            <h3><b>Conclusão</b></h3>
+            --
+
+            <h3><b>Referências</b></h3>
+
+            Abaixo estão as referências academicas e páginas de fabricantes de roteadores com exemplos de otimizações de hardware e software para o TCP:
+            <ul>
+                <li><a href="https://support.huawei.com/enterprise/en/doc/EDOC1100112358/4e817ae3/configuring-tcp-optimization" target="_blank">Huawei - Configuring TCP Optimization</a></li>
+                <li><a href="https://www.cisco.com/c/en/us/td/docs/routers/sdwan/configuration/tcp-optimization/vedge-20-x/tcp-optimization-book-vedge/tcp-optimization-vedge-devices.html" target="_blank">Cisco - TCP Optimization</a></li>
+                <li><a href="https://ieeexplore.ieee.org/abstract/document/842138" target="_blank">Optimizing TCP forwarder performance</a></li>
+                <li><a href="https://ieeexplore.ieee.org/document/5215913" target="_blank">Performance optimization of TCP/IP over 10 Gigabit Ethernet by precise instrumentation</a></li>
+                <li><a href="https://ant.isi.edu/events/dinr2023/P/p32.pdf" target="_blank">A Data Driven Approach to TCP Tuning</a></li>
+            </ul>
         </p>
     </section>
 </body>
