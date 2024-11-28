@@ -13,12 +13,12 @@ services:
     <<: *base
     entrypoint: iperf3 -s
 
-  200mbps:
-    <<: *base
-    environment:
-      - NETWORK_SPEED=200
-    depends_on:
-      - iperf-server        
+  # 200mbps:
+  #   <<: *base
+  #   environment:
+  #     - NETWORK_SPEED=200
+  #   depends_on:
+  #     - iperf-server        
 
   500mbps:
     <<: *base
@@ -27,12 +27,12 @@ services:
     depends_on:
       - iperf-server
 
-  700mbps:
-    <<: *base
-    environment:
-      - NETWORK_SPEED=700
-    depends_on:
-      - iperf-server
+  # 700mbps:
+  #   <<: *base
+  #   environment:
+  #     - NETWORK_SPEED=700
+  #   depends_on:
+  #     - iperf-server
 
   1gbps:
     <<: *base
