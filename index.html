@@ -402,13 +402,28 @@
 
             <h3><b>Base da Suposição</b></h3>
             <br />
-            Ao pesquisar sobre o assunto, encontramos fontes que apoiam nossa suposição. Features como <b>Segment Offloading</b>, <b>Caching e compressão de segmentos TCP</b>, <b>Paralelização de transmissão de dados</b>
+            Ao pesquisar sobre o assunto, encontramos fontes que apoiam nossa suposição. Features como <b>Segment Offloading</b>, <b>Caching e compressão de segmentos TCP</b> 
+            e <b>Paralelização de transmissão de dados</b> podem  ser encontradas em roteadores modernos, como os da <b>Cisco</b>, <b>Huawei</b>, <b>Juniper</b> e <b>Extreme</b>.
 
-            Além disso, inumeras otimizações de software nos roteadores modernos, como <b>TCP Fast Open</b>, <b>Politicas de aceleração</b>, <b>Janela TCP dinâmica</b>, <b>TCP Forwarding em firewalls</b>
+            Além disso, inumeras otimizações de software nos roteadores modernos, como <b>TCP Fast Open</b>, <b>Politicas de aceleração</b>, <b>Janela TCP dinâmica</b>, 
+            <b>TCP Forwarding em firewalls</b> e <b>Proportional Rate Recovery</b> também podem ser usadas em conjunto com as otimizações de hardware para melhorar o desempenho do TCP.
 
             <h3><b>Conclusão</b></h3>
-            --
+            A pergunta inicial era: <b>em que situações o TCP pode superar o UDP em termos de desempenho?</b> A resposta é: conforme a largura de banda aumenta e 
+            a rede é capaz de transmitir pacotes maiores, as otimizações de hardware e software presentes nos roteadores modernos podem fazer com que o TCP seja, em alguns casos, 
+            tão eficiente quanto o UDP, do ponto de vista de consumo de banda. É importante ressaltar que o UDP ainda é mais rápido que o TCP e que a nossa análise não leva em consideração eficiência de CPU, memória ou energia.
 
+            Uma possível solução para esse problema é o protocolo <b>QUIC</b> que é um protocolo de transporte seguro e rápido que utiliza o UDP como transporte, porém com novos desafios de segurança.
+
+            <h3><b>Dificuldades e possíveis pontos de erro</b></h3>
+
+            Durante a realização dos testes, encontramos algumas dificuldades que podem ter influenciado nos resultados obtidos:
+
+            <ul>
+                <li>Nos enlaces reais, verificamos perda de pacote variável conforme a largura de banda aumentava, o que pode ter influenciado nos resultados. 
+                    Acreditamos que isso se deve a falta de controle de congestionamento do UDP.</li>
+            </ul>
+            
             <h3><b>Referências</b></h3>
 
             Abaixo estão as referências academicas e páginas de fabricantes de roteadores com exemplos de otimizações de hardware e software para o TCP:
