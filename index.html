@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TCP versus UDP: A Verdade</title>
+    <title>TCPxUDP</title>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Geist+Mono&display=swap');
 
@@ -114,13 +114,21 @@
             bottom: 0;
             width: 100%;
         }
+
+        pre {
+            background: #2d2d2d;
+            color: #cfcfcf;
+            padding: 10px;
+            border-radius: 5px;
+            overflow: auto;
+        }
     </style>
 </head>
 
 <body>
 
     <header>
-        <h1>Relatório: TCP versus UDP: A Verdade</h1>
+        <h1>Relatório: TCPxUDP: A Verdade</h1>
         <h3>Gabriel Simon Batista Ribeiro - GRR20210575 e Vinícius Fontoura de Abreu - GRR20206873
     </header>
 
@@ -167,8 +175,9 @@
         <h2>Como fizemos os Testes</h2>
         <p class="text">
             Realizamos dois tipos de testes, um em enlaces reais do PoP-PR(Com permissão do coordenador técnico do PoP - 
-            Chrystian Lyra) e outro em enlaces virtuais utilizando o <span>Docker</span>. Os testes foram realizados em 
-            enlaces de 200Mbit/s, 500Mbit/s e 1Gbit/s, usando diferentes tamanhos de MTU (1500 e 9000) tanto para o TCP quanto para o UDP.
+            Chrystian Lyra) e outro em enlaces virtuais utilizando o <span>Docker</span>. Usamos esses dois ambientes com o objetivo de 
+            verificar se as otimizações de hardware para o TCP terão algum efeito prático na banda atingida. Os testes foram realizados em 
+            enlaces de 500Mbit/s e 1Gbit/s, usando diferentes tamanhos de MTU (1500 e 9000) tanto para o TCP quanto para o UDP.
             <br />
             <h3>Testes em Enlaces Reais</h3>
             Para realizar os testes em enlaces reais, utilizamos o <span>iperf3</span> como ferramenta de medição de desempenho. 
@@ -188,66 +197,200 @@
             <br />
             Abaixo estão os arquivos de configuração utilizados para a construção dos containêres 
             <ul>
-                <li><a class="files" href="./docker/Dockerfile.txt" target="_blank">Dockerfile</a></li>
+                <li><a class="files" href="./Dockerfile.txt" target="_blank">Dockerfile</a></li>
                 <li><a class="files" href="./docker-compose.yml.txt" target="_blank">docker-compose.yml</a></li>
-                <li><a class="files" href="./docker/entrypoint.sh.txt" target="_blank">entrypoint.sh</a></li>
+                <li><a class="files" href="./entrypoint.sh.txt" target="_blank">entrypoint.sh</a></li>
             </ul>
+            <h3>Executando os testes</h3>
+            Para executar os testes, é necessário ter o <span>docker</span> em uma versão recente instalada na máquina.
             <br />
-            Os testes foram configurados e divididos para diferentes tamanhos de banda e MTU. Os tamanhos testados
-            foram, 200Mbit/s, 500Mbit/s e 1Gbit/s. Para cada tamanho de banda, foram testados os seguintes MTUs: 1500 e
-            9000. Com
+            <br />
+            Basta baixar os arquivos acima e executar o seguinte comando:
+            <pre>
+            docker compose up -d
+            </pre>
+            Após a execução do comando, os containêres serão criados e os testes serão executados. Os resultados de cada teste serão
+            armazenados numa nova pasta chamada <span>volumes/iperf/</span>.
         </p>
     </section>
 
     <section id="resultados">
         <h2>Resultados</h2>
         <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam nec purus ac nunc
-            ultricies tincidunt. Nullam nec purus ac nunc
-            ultricies tincidunt. Nullam nec purus ac nunc
-            ultricies tclass="text"incidunt. Nullam nec purus ac nunc
+            Após a realização dos testes em enlaces reais e virtuais, obtivemos os seguintes resultados:
         </p>
         <table>
             <thead>
                 <tr>
-                    <th>Condição</th>
-                    <th>UDP (ms)</th>
-                    <th>TCP (ms)</th>
-                    <th>Observações</th>
+                    <th rowspan="2">Banda nominal</th>
+                    <th rowspan="2">Protocolo</th>
+                    <th rowspan="2">MTU</th>
+                    <th colspan="3">Enlace real</th>
+                    <th colspan="3">Enlace virtual</th>
+                </tr>
+                <tr>
+                    <th>Banda atingida</th>
+                    <th>Atraso (ms)</th>
+                    <th>Packet loss</th>
+                    <th>Banda atingida</th>
+                    <th>Atraso (ms)</th>
+                    <th>Packet loss</th>
                 </tr>
             </thead>
             <tbody>
+                <!-- 500Mbit/s 1500 -->
                 <tr>
-                    <td>Rede Estável</td>
-                    <td>15</td>
-                    <td>20</td>
-                    <td>UDP mais rápido devido à ausência de controle de conexão</td>
+                    <td>500 Mbits/s</td>
+                    <td>TCP</td>
+                    <td>1500</td>
+                    <!-- Real -->
+                    <td>495.88</td>
+                    <td>0.832</td>
+                    <td>0%</td>
+                    <!-- virtual -->
+                    <td>475</td>
+                    <td>0</td>
+                    <td>0%</td>
                 </tr>
+                <!-- 500Mbit/s 1500 -->
                 <tr>
-                    <td>Perda de Pacotes</td>
-                    <td>25</td>
-                    <td>30</td>
-                    <td>TCP compensou perdas com retransmissões</td>
+                    <td>500 Mbits/s</td>
+                    <td>UDP</td>
+                    <td>1500</td>
+                    <!-- Real -->
+                    <td>500.17</td>
+                    <td>0.748</td>
+                    <td>0.281%</td>
+                    <!-- virtual -->
+                    <td>485</td>
+                    <td>0</td>
+                    <td>0%</td>
                 </tr>
+                <!-- 500Mbit/s 9000 -->
                 <tr>
-                    <td>Alta Latência</td>
-                    <td>18</td>
-                    <td>22</td>
-                    <td>TCP apresentou estabilidade maior</td>
+                    <td>500 Mbits/s</td>
+                    <td>TCP</td>
+                    <td>9000</td>
+                    <!-- Real -->
+                    <td>499.68</td>
+                    <td>0.832</td>
+                    <td>0%</td>
+                    <!-- virtual -->
+                    <td>475</td>
+                    <td>0</td>
+                    <td>0%</td>
+                </tr>
+                <!-- 500Mbit/s 9000 -->
+                <tr>
+                    <td>500 Mbits/s</td>
+                    <td>UDP</td>
+                    <td>9000</td>
+                    <!-- Real -->
+                    <td>500.05</td>
+                    <td>0.995</td>
+                    <td>0%</td>
+                    <!-- virtual -->
+                    <td>481</td>
+                    <td>0</td>
+                    <td>0%</td>
+                </tr>
+                <!-- 1000Mbit/s 1500 -->
+                <tr>
+                    <td>1000 Mbits/s</td>
+                    <td>TCP</td>
+                    <td>1500</td>
+                    <!-- Real -->
+                    <td>907.56</td>
+                    <td>20.860</td>
+                    <td>0%</td>
+                    <!-- virtual -->
+                    <td>948</td>
+                    <td>0</td>
+                    <td>0%</td>
+                </tr>
+                <!-- 1000Mbit/s 1500 -->
+                <tr>
+                    <td>1000 Mbits/s</td>
+                    <td>UDP</td>
+                    <td>1500</td>
+                    <!-- Real -->
+                    <td>888.62</td>
+                    <td>21.356</td>
+                    <td>11.179%</td>
+                    <!-- virtual -->
+                    <td>967</td>
+                    <td>0</td>
+                    <td>0%</td>
+                </tr>
+                <!-- 1000Mbit/s 9000 -->
+                <tr>
+                    <td>1000 Mbits/s</td>
+                    <td>TCP</td>
+                    <td>9000</td>
+                    <!-- Real -->
+                    <td>946.31</td>
+                    <td>15.481</td>
+                    <td>0%</td>
+                    <!-- virtual -->
+                    <td>948</td>
+                    <td>0</td>
+                    <td>0%</td>
+                </tr>
+                <!-- 1000Mbit/s 9000 -->
+                <tr>
+                    <td>1000 Mbits/s</td>
+                    <td>UDP</td>
+                    <td>9000</td>
+                    <!-- Real -->
+                    <td>997.28</td>
+                    <td>37.820</td>
+                    <td>0.285%</td>
+                    <!-- virtual -->
+                    <td>963</td>
+                    <td>0</td>
+                    <td>0%</td>
                 </tr>
             </tbody>
         </table>
+
+        Para ajudar na visualização dos resultados, preparamos gráficos comparando a banda atingida em cada cenário de teste.
+        <img src="./Enlaces 500 Mbps - 1500 MTU.svg" alt="Gráfico 500Mbit/s 1500 MTU">
+        <img src="./Enlaces 500 Mbps - 9000 MTU.svg" alt="Gráfico 500Mbit/s 9000 MTU">
+        <br />
+        <br />
+        <img src="./Enlaces 1000 Mbps - 1500 MTU.svg" alt="Gráfico 1000Mbit/s 1500 MTU">
+        <img src="./Enlaces 1000 Mbps - 9000 MTU.svg" alt="Gráfico 1000Mbit/s 9000 MTU">
+        <br />
+        Com os gráficos fica fácil de ver que:
+        <h3>Enlaces reais</h3>
+        Nos enlaces reais, com MTU 1500, o TCP atingiu em média 94.96% da banda nominal enquanto o UDP atingiu 94,43% da banda nominal.
+        <br />
+        <br />
+        Já com o MTU 9000, o TCP atingiu em média 97,28% da banda nominal enquanto o UDP atingiu 99.86% da banda nominal.
+        <br />
+        <br />
+        Portanto, o TCP teve uma melhora de 2.32% ao aumentar o MTU nos enlaces reais e o UDP teve uma melhora de 5.43% ao aumentar o MTU nos enlaces reais.
+        
+        <h3>Enlaces virtuais</h3>
+
+        Nos enlaces virtuais, com MTU 1500, o TCP atingiu 94.9% da banda nominal enquanto o UDP atingiu 97.3% da banda nominal.
+        <br />
+        <br />
+        Já com o MTU 9000, o TCP atingiu 94.9% da banda nominal enquanto o UDP atingiu 96.25% da banda nominal.
+        <br />
+        <br />
+        Portanto, o TCP teve uma melhora de 0% ao aumentar o MTU nos enlaces virtuais e o UDP teve uma melhora de 1.05% ao aumentar o MTU nos enlaces virtuais.
     </section>
 
     <section id="analise">
         <h2>A Verdade!</h2>
-        <img src="https://media2.giphy.com/media/v1.Y2lkPTc5MGI3NjExbzByMGZ0bnhtamNtMHV1cGJya2EzcWdhcXNxbTh3bm5pbGRwZ2d2dyZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/3o6nV3ykHj2OALKq8E/giphy.webp"
-            alt="Gato">
-        <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam nec purus ac nunc
-            ultricies tincidunt. Nullam nec purus ac nunc
-            ultricies tincidunt. Nullam nec purus ac nunc
-            ultricies tincidunt. Nullam nec purus ac nunc
+            De acordo com os dados obtidos, podemos notar que os resultados, tanto do TCP quanto do UDP, melhoraram ao aumentar o MTU nos enlaces reais, 
+            enquanto nos enlaces virtuais essa melhora foi quase nula.
+            <br />
+            Também é possível notar que nos enlaces reais, com MTU 1500, o TCP performou levemente melhor que o UDP.
+            <br />
+            <br />
+            Logo, surge a questão: <b>Por que o TCP performou tão bem quanto o UDP nos enlaces reais?</b> Além disso, <b>por que o TCP teve uma melhora significativa ao aumentar o MTU nos enlaces reais?</b>
         </p>
     </section>
 </body>
