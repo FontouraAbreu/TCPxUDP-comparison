@@ -1,19 +1,19 @@
 Connecting to host iperf-server, port 5201
-[  5] local 172.24.0.5 port 52213 connected to 172.24.0.2 port 5201
+[  5] local 172.29.0.4 port 36708 connected to 172.29.0.2 port 5201
 [ ID] Interval           Transfer     Bitrate         Total Datagrams
-[  5]   0.00-1.00   sec  57.9 MBytes   486 Mbits/sec  41945  
-[  5]   1.00-2.00   sec  57.9 MBytes   486 Mbits/sec  41944  
-[  5]   2.00-3.00   sec  57.9 MBytes   486 Mbits/sec  41912  
-[  5]   3.00-4.00   sec  57.9 MBytes   486 Mbits/sec  41928  
-[  5]   4.00-5.00   sec  57.8 MBytes   485 Mbits/sec  41851  
-[  5]   5.00-6.00   sec  57.9 MBytes   486 Mbits/sec  41942  
-[  5]   6.00-7.00   sec  57.8 MBytes   485 Mbits/sec  41839  
-[  5]   7.00-8.00   sec  57.9 MBytes   486 Mbits/sec  41942  
-[  5]   8.00-9.00   sec  57.9 MBytes   486 Mbits/sec  41942  
-[  5]   9.00-10.00  sec  57.9 MBytes   486 Mbits/sec  41940  
+[  5]   0.00-1.00   sec  58.0 MBytes   486 Mbits/sec  41973  
+[  5]   1.00-2.00   sec  57.9 MBytes   485 Mbits/sec  41897  
+[  5]   2.00-3.00   sec  57.9 MBytes   485 Mbits/sec  41907  
+[  5]   3.00-4.00   sec  57.9 MBytes   486 Mbits/sec  41925  
+[  5]   4.00-5.00   sec  57.9 MBytes   486 Mbits/sec  41932  
+[  5]   5.00-6.00   sec  57.9 MBytes   485 Mbits/sec  41910  
+[  5]   6.00-7.00   sec  57.7 MBytes   484 Mbits/sec  41813  
+[  5]   7.00-8.00   sec  57.9 MBytes   486 Mbits/sec  41926  
+[  5]   8.00-9.00   sec  57.8 MBytes   485 Mbits/sec  41887  
+[  5]   9.00-10.00  sec  57.9 MBytes   486 Mbits/sec  41914  
 - - - - - - - - - - - - - - - - - - - - - - - - -
 [ ID] Interval           Transfer     Bitrate         Jitter    Lost/Total Datagrams
-[  5]   0.00-10.00  sec   579 MBytes   486 Mbits/sec  0.000 ms  0/419185 (0%)  sender
-[  5]   0.00-10.00  sec   579 MBytes   485 Mbits/sec  0.001 ms  0/419185 (0%)  receiver
+[  5]   0.00-10.00  sec   579 MBytes   485 Mbits/sec  0.000 ms  0/419084 (0%)  sender
+[  5]   0.00-10.00  sec   579 MBytes   485 Mbits/sec  0.001 ms  0/419084 (0%)  receiver
 
 iperf Done.
